@@ -15,10 +15,11 @@ import java.util.Set;
 @NoArgsConstructor
 public class Student extends User {
 
-    @Column(unique = true)
+    @Column(unique = true , nullable = false)
     private long stdNumber;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private AcademicLevel academicLevel;
 
     @ManyToMany(mappedBy = "students")

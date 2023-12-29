@@ -3,6 +3,8 @@ package com.example.university_management_system_project.dto_mapper;
 import com.example.university_management_system_project.common.AcademicLevel;
 import com.example.university_management_system_project.common.Gender;
 import com.example.university_management_system_project.entity.Course;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
 
 import java.util.Date;
@@ -12,8 +14,10 @@ import java.util.Set;
 @Data
 public class StudentDTO extends UserDTO {
 
+    @Positive
     private long stdNumber;
 
+    @NotNull
     private AcademicLevel academicLevel;
 
     private Set<Course> courses;

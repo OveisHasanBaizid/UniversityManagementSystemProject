@@ -2,8 +2,6 @@ package com.example.university_management_system_project.entity;
 
 import com.example.university_management_system_project.common.Gender;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

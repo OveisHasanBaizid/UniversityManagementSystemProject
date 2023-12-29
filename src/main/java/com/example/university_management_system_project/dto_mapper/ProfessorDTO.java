@@ -3,6 +3,8 @@ package com.example.university_management_system_project.dto_mapper;
 import com.example.university_management_system_project.common.AcademicRank;
 import com.example.university_management_system_project.common.Gender;
 import com.example.university_management_system_project.entity.Course;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -14,8 +16,10 @@ import java.util.List;
 @Data
 public class ProfessorDTO extends UserDTO {
 
+    @Positive
     private int code;
 
+    @NotNull
     private AcademicRank academicRank;
 
     private List<Course> courses;
