@@ -1,5 +1,6 @@
 package com.example.university_management_system_project.service;
 
+import com.example.university_management_system_project.entity.Course;
 import com.example.university_management_system_project.entity.Professor;
 import com.example.university_management_system_project.entity.Student;
 import com.example.university_management_system_project.exception.ConflictException;
@@ -53,5 +54,19 @@ public class ProfessorService implements IProfessorService {
 
     public List<Professor> findAll() {
         return professorRepository.findAll();
+    }
+
+    @Override
+    public Professor findByCode(int code) {
+        Optional<Professor> optional = professorRepository.findByCode(code);
+        if (optional.isEmpty())
+            throw new NotFoundException("Professor Not found.");
+        return optional.get();
+    }
+
+    @Override
+    public List<Course> listCoursesProfessor(int code) {
+        Professor professor = findByCode(code);
+        return professor.getCourses().stream().toList();
     }
 }

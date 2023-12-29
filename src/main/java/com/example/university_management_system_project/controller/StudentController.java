@@ -1,10 +1,12 @@
 package com.example.university_management_system_project.controller;
 
+import com.example.university_management_system_project.dto_mapper.CourseDTO;
+import com.example.university_management_system_project.dto_mapper.CourseMapper;
 import com.example.university_management_system_project.dto_mapper.StudentDTO;
 import com.example.university_management_system_project.dto_mapper.StudentMapper;
+import com.example.university_management_system_project.entity.Course;
 import com.example.university_management_system_project.entity.Student;
 import com.example.university_management_system_project.service.IStudentService;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +19,13 @@ public class StudentController {
 
     private final IStudentService studentService;
     private final StudentMapper studentMapper;
+    private final CourseMapper courseMapper;
 
-    public StudentController(IStudentService studentService, StudentMapper studentMapper) {
+    public StudentController(IStudentService studentService, StudentMapper studentMapper
+            , CourseMapper courseMapper) {
         this.studentService = studentService;
         this.studentMapper = studentMapper;
+        this.courseMapper = courseMapper;
     }
 
     @PostMapping("/save")
@@ -52,5 +57,11 @@ public class StudentController {
         List<Student> students = this.studentService.findAll();
         List<StudentDTO> studentDTOS = studentMapper.toStudentDTOs(students);
         return ResponseEntity.ok(studentDTOS);
+    }
+
+    @GetMapping("/{@stdNumber}/course/list")
+    public ResponseEntity<List<CourseDTO>> listCoursesStudent(@PathVariable long stdNumber) {
+        List<Course> courses = studentService.listCoursesStudent(stdNumber);
+        return ResponseEntity.ok(courseMapper.toCourseDTOs(courses));
     }
 }

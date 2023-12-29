@@ -1,7 +1,10 @@
 package com.example.university_management_system_project.controller;
 
+import com.example.university_management_system_project.dto_mapper.CourseDTO;
+import com.example.university_management_system_project.dto_mapper.CourseMapper;
 import com.example.university_management_system_project.dto_mapper.ProfessorDTO;
 import com.example.university_management_system_project.dto_mapper.ProfessorMapper;
+import com.example.university_management_system_project.entity.Course;
 import com.example.university_management_system_project.entity.Professor;
 import com.example.university_management_system_project.service.IProfessorService;
 import org.springframework.http.HttpStatus;
@@ -16,10 +19,13 @@ public class ProfessorController {
 
     private final IProfessorService professorService;
     private final ProfessorMapper professorMapper;
+    private final CourseMapper courseMapper;
 
-    public ProfessorController(IProfessorService professorService, ProfessorMapper professorMapper) {
+    public ProfessorController(IProfessorService professorService
+            , ProfessorMapper professorMapper, CourseMapper courseMapper) {
         this.professorService = professorService;
         this.professorMapper = professorMapper;
+        this.courseMapper = courseMapper;
     }
 
     @PostMapping("/save")
@@ -48,5 +54,11 @@ public class ProfessorController {
     public ResponseEntity<List<ProfessorDTO>> findAll() {
         List<Professor> professors = this.professorService.findAll();
         return ResponseEntity.ok(professorMapper.toProfessorDTOs(professors));
+    }
+
+    @GetMapping("/{@codeProfessor}/course/list")
+    public ResponseEntity<List<CourseDTO>> listCoursesProfessor(@PathVariable int codeProfessor) {
+        List<Course> courses = professorService.listCoursesProfessor(codeProfessor);
+        return ResponseEntity.ok(courseMapper.toCourseDTOs(courses));
     }
 }

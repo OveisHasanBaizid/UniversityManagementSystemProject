@@ -1,7 +1,7 @@
 package com.example.university_management_system_project.service;
 
-import com.example.university_management_system_project.dto_mapper.StudentDTO;
 import com.example.university_management_system_project.entity.Course;
+import com.example.university_management_system_project.entity.Professor;
 import com.example.university_management_system_project.entity.Student;
 import com.example.university_management_system_project.exception.ConflictException;
 import com.example.university_management_system_project.exception.NotFoundException;
@@ -52,7 +52,21 @@ public class StudentService implements IStudentService {
         return optional.get();
     }
 
+    @Override
+    public Student findByStdNumber(Long stdNumber) {
+        Optional<Student> optional = studentRepository.findByStdNumber(stdNumber);
+        if (optional.isEmpty())
+            throw new NotFoundException("Student Not found.");
+        return optional.get();
+    }
+
     public List<Student> findAll() {
         return studentRepository.findAll();
+    }
+
+    @Override
+    public List<Course> listCoursesStudent(long stdNumber) {
+        Student student = findByStdNumber(stdNumber);
+        return student.getCourses().stream().toList();
     }
 }
