@@ -23,21 +23,27 @@ public class StudentController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<HttpStatus> save(Student student) {
-        this.studentService.save(student);
+    public ResponseEntity<HttpStatus> save(StudentDTO studentDTO) {
+        this.studentService.save(studentMapper.toStudent(studentDTO));
+        return ResponseEntity.ok(HttpStatus.CREATED);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<HttpStatus> update(StudentDTO studentDTO) {
+        this.studentService.update(studentMapper.toStudent(studentDTO));
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<HttpStatus> delete(@PathVariable Long id) {
-        this.studentService.delete(id);
+        this.studentService.deleteById(id);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Student> findById(@PathVariable Long id) {
+    @GetMapping("/find/{id}")
+    public ResponseEntity<StudentDTO> findById(@PathVariable Long id) {
         Student student = this.studentService.findById(id);
-        return ResponseEntity.ok(student);
+        return ResponseEntity.ok(studentMapper.toStudentDTO(student));
     }
 
     @GetMapping("/list")

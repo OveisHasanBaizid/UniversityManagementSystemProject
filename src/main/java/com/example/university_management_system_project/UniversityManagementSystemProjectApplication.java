@@ -24,8 +24,8 @@ public class UniversityManagementSystemProjectApplication
 
     @Override
     public void run(String... args) throws Exception {
-        studentService.save(new Student(2387438, 83048,"User1","Password1"));
-        studentService.save(new Student(238538, 83548,"User2","Password2"));
-        studentService.save(new Student(2345438, 832348,"User3","Password3"));
+//        studentService.save(new Student(2387438, 83048,"User1","Password1"));
+//        studentService.save(new Student(238538, 83548,"User2","Password2"));
+//        studentService.save(new Student(2345438, 832348,"User3","Password3"));
     }
 }

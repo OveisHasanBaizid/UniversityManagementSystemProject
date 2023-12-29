@@ -1,5 +1,6 @@
 package com.example.university_management_system_project.controller;
 
+import com.example.university_management_system_project.dto_mapper.ProfessorDTO;
 import com.example.university_management_system_project.dto_mapper.ProfessorMapper;
 import com.example.university_management_system_project.entity.Professor;
 import com.example.university_management_system_project.service.IProfessorService;
@@ -22,26 +23,30 @@ public class ProfessorController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<HttpStatus> save(Professor professor) {
-        this.professorService.save(professor);
+    public ResponseEntity<HttpStatus> save(ProfessorDTO professorDTO) {
+        this.professorService.save(professorMapper.toProfessor(professorDTO));
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
-
-    @DeleteMapping("/{id}")
+    @PutMapping("/update")
+    public ResponseEntity<HttpStatus> update(ProfessorDTO professorDTO) {
+        this.professorService.update(professorMapper.toProfessor(professorDTO));
+        return ResponseEntity.ok(HttpStatus.CREATED);
+    }
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<HttpStatus> delete(@PathVariable Long id) {
-        this.professorService.delete(id);
+        this.professorService.deleteById(id);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Professor> findById(@PathVariable Long id) {
+    @GetMapping("/find/{id}")
+    public ResponseEntity<ProfessorDTO> findById(@PathVariable Long id) {
         Professor professor = this.professorService.findById(id);
-        return ResponseEntity.ok(professor);
+        return ResponseEntity.ok(professorMapper.toProfessorDTO(professor));
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<Professor>> findAll() {
+    public ResponseEntity<List<ProfessorDTO>> findAll() {
         List<Professor> professors = this.professorService.findAll();
-        return ResponseEntity.ok(professors);
+        return ResponseEntity.ok(professorMapper.toProfessorDTOs(professors));
     }
 }

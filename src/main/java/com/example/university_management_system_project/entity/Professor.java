@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 public class Professor extends User {
 
-    @Column(unique = true , nullable = false)
+    @Column(unique = true , nullable = false , updatable = false)
     private int code;
 
     @Enumerated(EnumType.STRING)

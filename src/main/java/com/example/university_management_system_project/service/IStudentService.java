@@ -8,10 +8,14 @@ public interface IStudentService {
 
     Student save(Student student);
 
-    void delete(Long id);
+    Student update(Student student);
+
+    void deleteById(Long id);
 
     Student findById(Long id);
 
     List<Student> findAll();
+
+
 
 }

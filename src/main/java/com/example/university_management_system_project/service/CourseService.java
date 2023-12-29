@@ -13,17 +13,8 @@ import java.util.Optional;
 public class CourseService implements ICourseService {
     private final CourseRepository courseRepository;
 
-
     public CourseService(CourseRepository courseRepository) {
         this.courseRepository = courseRepository;
-    }
-
-    @Override
-    public Course findByCode(int code) {
-        Optional<Course> optional = courseRepository.findByCode(code);
-        if (optional.isEmpty())
-                throw new ConflictException("Course Not found.");
-        return optional.get();
     }
 
     @Override
@@ -43,7 +34,7 @@ public class CourseService implements ICourseService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void deleteById(Long id) {
         //It checks if this code already exists or not
         findById(id);
         courseRepository.deleteById(id);

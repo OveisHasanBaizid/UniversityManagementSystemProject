@@ -30,7 +30,7 @@ public class CourseController {
 
     @PutMapping("/update")
     public ResponseEntity<HttpStatus> update(CourseDTO courseDTO) {
-        this.courseService.save(courseMapper.toCourse(courseDTO));
+        this.courseService.update(courseMapper.toCourse(courseDTO));
         return ResponseEntity.ok(HttpStatus.OK);
     }
 

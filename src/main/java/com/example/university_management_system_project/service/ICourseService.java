@@ -7,13 +7,11 @@ import java.util.Optional;
 
 public interface ICourseService {
 
-    Course findByCode(int code);
-
     Course update(Course course);
 
     Course save(Course course);
 
-    void delete(Long id);
+    void deleteById(Long id);
 
     Course findById(Long id);
 
