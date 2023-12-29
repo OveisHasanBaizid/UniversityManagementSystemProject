@@ -23,20 +23,20 @@ public class CourseController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<HttpStatus> save(CourseDTO courseDTO) {
+    public ResponseEntity<HttpStatus> save(@RequestBody CourseDTO courseDTO) {
         this.courseService.save(courseMapper.toCourse(courseDTO));
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<HttpStatus> update(CourseDTO courseDTO) {
+    public ResponseEntity<HttpStatus> update(@RequestBody CourseDTO courseDTO) {
         this.courseService.update(courseMapper.toCourse(courseDTO));
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<HttpStatus> delete(@PathVariable Long id) {
-        this.courseService.delete(id);
+        this.courseService.deleteById(id);
         return ResponseEntity.ok().build();
     }
 

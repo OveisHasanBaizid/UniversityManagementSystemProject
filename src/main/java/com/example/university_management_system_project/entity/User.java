@@ -20,7 +20,7 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private String family;
 
-    @Column(unique = true, nullable = false , updatable = false)
+    @Column(unique = true, updatable = false)
     private long nationalCode;
 
     @Enumerated(EnumType.STRING)

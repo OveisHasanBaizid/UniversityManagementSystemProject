@@ -4,6 +4,7 @@ import com.example.university_management_system_project.dto_mapper.StudentDTO;
 import com.example.university_management_system_project.dto_mapper.StudentMapper;
 import com.example.university_management_system_project.entity.Student;
 import com.example.university_management_system_project.service.IStudentService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,13 +24,13 @@ public class StudentController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<HttpStatus> save(StudentDTO studentDTO) {
+    public ResponseEntity<HttpStatus> save(@RequestBody StudentDTO studentDTO) {
         this.studentService.save(studentMapper.toStudent(studentDTO));
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<HttpStatus> update(StudentDTO studentDTO) {
+    public ResponseEntity<HttpStatus> update(@RequestBody StudentDTO studentDTO) {
         this.studentService.update(studentMapper.toStudent(studentDTO));
         return ResponseEntity.ok(HttpStatus.CREATED);
     }

@@ -32,5 +32,4 @@ public class Student extends User {
         this.setPassword(password);
         this.setBirthDay(new Date());
     }
-
 }

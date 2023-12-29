@@ -23,12 +23,12 @@ public class ProfessorController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<HttpStatus> save(ProfessorDTO professorDTO) {
+    public ResponseEntity<HttpStatus> save(@RequestBody ProfessorDTO professorDTO) {
         this.professorService.save(professorMapper.toProfessor(professorDTO));
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
     @PutMapping("/update")
-    public ResponseEntity<HttpStatus> update(ProfessorDTO professorDTO) {
+    public ResponseEntity<HttpStatus> update(@RequestBody ProfessorDTO professorDTO) {
         this.professorService.update(professorMapper.toProfessor(professorDTO));
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
