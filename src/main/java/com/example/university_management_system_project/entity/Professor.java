@@ -6,7 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,5 +25,5 @@ public class Professor extends User {
     private AcademicRank academicRank;
 
     @OneToMany(mappedBy = "professor", cascade = CascadeType.ALL)
-    private List<Course> courses;
+    private Set<Course> courses = new HashSet<>();
 }

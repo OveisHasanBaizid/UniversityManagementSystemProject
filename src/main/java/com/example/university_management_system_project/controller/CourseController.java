@@ -1,10 +1,8 @@
 package com.example.university_management_system_project.controller;
 
-import com.example.university_management_system_project.dto_mapper.CourseDTO;
-import com.example.university_management_system_project.dto_mapper.CourseMapper;
-import com.example.university_management_system_project.dto_mapper.StudentDTO;
-import com.example.university_management_system_project.dto_mapper.StudentMapper;
+import com.example.university_management_system_project.dto_mapper.*;
 import com.example.university_management_system_project.entity.Course;
+import com.example.university_management_system_project.entity.Professor;
 import com.example.university_management_system_project.entity.Student;
 import com.example.university_management_system_project.service.ICourseService;
 import org.springframework.http.HttpStatus;
@@ -20,12 +18,14 @@ public class CourseController {
     private final ICourseService courseService;
     private final CourseMapper courseMapper;
     private final StudentMapper studentMapper;
+    private final ProfessorMapper professorMapper;
 
     public CourseController(ICourseService courseService, CourseMapper courseMapper
-            , StudentMapper studentMapper) {
+            , StudentMapper studentMapper, ProfessorMapper professorMapper) {
         this.courseService = courseService;
         this.courseMapper = courseMapper;
         this.studentMapper = studentMapper;
+        this.professorMapper = professorMapper;
     }
 
     @PostMapping("/save")
@@ -55,40 +55,45 @@ public class CourseController {
     @GetMapping("/list")
     public ResponseEntity<List<CourseDTO>> findAll() {
         List<Course> courses = this.courseService.findAll();
-        return ResponseEntity.ok(courseMapper.toCourseDTOs(courses));
+        List<CourseDTO> courseDTOS = courseMapper.toCourseDTOs(courses);
+        return ResponseEntity.ok(courseDTOS);
     }
 
-    @GetMapping("/{@codeCourse}/students")
+    @GetMapping("/{codeCourse}/students")
     public ResponseEntity<List<StudentDTO>> listStudents(@PathVariable int codeCourse) {
         List<Student> students = courseService.listStudents(codeCourse);
         return ResponseEntity.ok(studentMapper.toStudentDTOs(students));
     }
 
-    @PostMapping("/{@codeCourse}/students/add/{@stdNumber}")
+    @PostMapping("/{codeCourse}/students/add/{stdNumber}")
     public ResponseEntity<HttpStatus> addStudent(@PathVariable int codeCourse
             , @PathVariable long stdNumber) {
         courseService.addStudent(codeCourse, stdNumber);
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/{@codeCourse}/students/delete/{@stdNumber}")
+    @DeleteMapping("/{codeCourse}/students/delete/{stdNumber}")
     public ResponseEntity<HttpStatus> removeStudent(@PathVariable int codeCourse
             , @PathVariable long stdNumber) {
         courseService.removeStudent(codeCourse, stdNumber);
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/{@codeCourse}/professor/add/{@codeProfessor}")
+    @PostMapping("/{codeCourse}/professor/add/{codeProfessor}")
     public ResponseEntity<HttpStatus> addProfessor(@PathVariable int codeCourse
             , @PathVariable int codeProfessor) {
         courseService.addProfessor(codeCourse,codeProfessor);
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/{@codeCourse}/professor/add/{@codeProfessor}")
-    public ResponseEntity<List<CourseDTO>> removeStudent(@PathVariable int codeCourse
-            , @PathVariable int codeProfessor) {
-        courseService.removeProfessor(codeCourse,codeProfessor);
+    @DeleteMapping("/{codeCourse}/professor/remove")
+    public ResponseEntity<HttpStatus> removeStudent(@PathVariable int codeCourse) {
+        courseService.removeProfessor(codeCourse);
         return ResponseEntity.ok().build();
+    }
+    @GetMapping("/{codeCourse}/professor")
+    public ResponseEntity<ProfessorDTO> getProfessor(@PathVariable int codeCourse) {
+        Professor professor = courseService.getProfessor(codeCourse);
+        return ResponseEntity.ok(professorMapper.toProfessorDTO(professor));
     }
 }

@@ -1,14 +1,11 @@
 package com.example.university_management_system_project;
 
-import com.example.university_management_system_project.entity.Student;
 import com.example.university_management_system_project.service.IStudentService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
-@EnableJpaAuditing
 public class UniversityManagementSystemProjectApplication
         implements CommandLineRunner {
 

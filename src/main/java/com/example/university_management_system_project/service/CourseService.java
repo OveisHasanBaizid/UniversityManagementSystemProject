@@ -6,23 +6,18 @@ import com.example.university_management_system_project.entity.Student;
 import com.example.university_management_system_project.exception.ConflictException;
 import com.example.university_management_system_project.exception.NotFoundException;
 import com.example.university_management_system_project.repository.CourseRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class CourseService implements ICourseService {
     private final CourseRepository courseRepository;
     private final StudentService studentService;
     private final ProfessorService professorService;
-
-    public CourseService(CourseRepository courseRepository, StudentService studentService
-            , ProfessorService professorService) {
-        this.courseRepository = courseRepository;
-        this.studentService = studentService;
-        this.professorService = professorService;
-    }
 
     @Override
     public Course update(Course course) {
@@ -74,6 +69,9 @@ public class CourseService implements ICourseService {
         Course course = findByCode(codeCourse);
         course.getStudents().add(student);
         student.getCourses().add(course);
+
+        studentService.update(student);
+        update(course);
     }
 
     @Override
@@ -89,6 +87,9 @@ public class CourseService implements ICourseService {
             throw new NotFoundException("The student does not have this course.");
         course.getStudents().remove(student);
         student.getCourses().remove(course);
+
+        studentService.update(student);
+        update(course);
     }
 
     @Override
@@ -97,15 +98,29 @@ public class CourseService implements ICourseService {
         Course course = findByCode(codeCourse);
         course.setProfessor(professor);
         professor.getCourses().add(course);
+
+        professorService.update(professor);
+        update(course);
     }
 
     @Override
-    public void removeProfessor(int codeCourse, int codeProfessor) {
-        Professor professor = professorService.findByCode(codeProfessor);
+    public void removeProfessor(int codeCourse) {
         Course course = findByCode(codeCourse);
-        if (!course.getProfessor().equals(professor))
-            throw new NotFoundException("The desired master is not made for this course.");
+        if (course.getProfessor() == null)
+            throw new NotFoundException("The professor is not set for this course.");
+        Professor professor = course.getProfessor();
         course.setProfessor(null);
         professor.getCourses().remove(course);
+
+        professorService.update(professor);
+        update(course);
+    }
+
+    @Override
+    public Professor getProfessor(int codeCourse) {
+        Course course = findByCode(codeCourse);
+        if (course.getProfessor() == null)
+            throw new NotFoundException("The professor is not set for this course.");
+        return course.getProfessor();
     }
 }

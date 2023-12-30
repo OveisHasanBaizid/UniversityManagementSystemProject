@@ -6,18 +6,16 @@ import com.example.university_management_system_project.entity.Student;
 import com.example.university_management_system_project.exception.ConflictException;
 import com.example.university_management_system_project.exception.NotFoundException;
 import com.example.university_management_system_project.repository.ProfessorRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ProfessorService implements IProfessorService {
     private final ProfessorRepository professorRepository;
-
-    public ProfessorService(ProfessorRepository professorRepository) {
-        this.professorRepository = professorRepository;
-    }
 
     public Professor save(Professor professor) {
         Optional<Professor> optional;
@@ -36,8 +34,8 @@ public class ProfessorService implements IProfessorService {
 
     @Override
     public Professor update(Professor professor) {
-        findById(professor.getId());
-        return professorRepository.save(professor);
+        Professor professor1 = findById(professor.getId());
+        return professorRepository.save(professor1);
     }
 
     public void deleteById(Long id) {

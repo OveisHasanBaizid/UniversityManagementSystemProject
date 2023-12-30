@@ -56,7 +56,7 @@ public class ProfessorController {
         return ResponseEntity.ok(professorMapper.toProfessorDTOs(professors));
     }
 
-    @GetMapping("/{@codeProfessor}/course/list")
+    @GetMapping("/{codeProfessor}/course/list")
     public ResponseEntity<List<CourseDTO>> listCoursesProfessor(@PathVariable int codeProfessor) {
         List<Course> courses = professorService.listCoursesProfessor(codeProfessor);
         return ResponseEntity.ok(courseMapper.toCourseDTOs(courses));

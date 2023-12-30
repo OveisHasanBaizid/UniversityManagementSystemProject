@@ -1,6 +1,7 @@
 package com.example.university_management_system_project.service;
 
 import com.example.university_management_system_project.entity.Course;
+import com.example.university_management_system_project.entity.Professor;
 import com.example.university_management_system_project.entity.Student;
 
 import java.util.List;
@@ -28,5 +29,7 @@ public interface ICourseService {
 
     void addProfessor(int codeCourse , int codeProfessor);
 
-    void removeProfessor(int codeCourse , int codeProfessor);
+    void removeProfessor(int codeCourse);
+
+    Professor getProfessor(int codeCourse);
 }

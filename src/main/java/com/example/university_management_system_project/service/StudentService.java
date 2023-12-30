@@ -1,23 +1,20 @@
 package com.example.university_management_system_project.service;
 
 import com.example.university_management_system_project.entity.Course;
-import com.example.university_management_system_project.entity.Professor;
 import com.example.university_management_system_project.entity.Student;
 import com.example.university_management_system_project.exception.ConflictException;
 import com.example.university_management_system_project.exception.NotFoundException;
 import com.example.university_management_system_project.repository.StudentRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class StudentService implements IStudentService {
     private final StudentRepository studentRepository;
-
-    public StudentService(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
-    }
 
     public Student save(Student student) {
         Optional<Student> optional;

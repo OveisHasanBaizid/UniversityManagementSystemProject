@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -23,7 +24,7 @@ public class Student extends User {
     private AcademicLevel academicLevel;
 
     @ManyToMany(mappedBy = "students")
-    private Set<Course> courses;
+    private Set<Course> courses = new HashSet<>();
 
     public Student(long stdNumber, long nationalCode, String username, String password) {
         this.stdNumber = stdNumber;

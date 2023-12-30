@@ -59,7 +59,7 @@ public class StudentController {
         return ResponseEntity.ok(studentDTOS);
     }
 
-    @GetMapping("/{@stdNumber}/course/list")
+    @GetMapping("/{stdNumber}/course/list")
     public ResponseEntity<List<CourseDTO>> listCoursesStudent(@PathVariable long stdNumber) {
         List<Course> courses = studentService.listCoursesStudent(stdNumber);
         return ResponseEntity.ok(courseMapper.toCourseDTOs(courses));
