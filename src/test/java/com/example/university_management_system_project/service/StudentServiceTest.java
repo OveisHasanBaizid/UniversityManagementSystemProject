@@ -19,15 +19,14 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class StudentServiceTest {
 
+    static Student student;
     @Mock
     private StudentRepository studentRepository;
     @InjectMocks
     private StudentService studentService;
 
-    static Student student;
-
     @BeforeAll
-    public static void createObject(){
+    public static void createObject() {
         student = new Student();
         student.setStdNumber(1736716);
         student.setNationalCode(8239429498L);
@@ -42,6 +41,7 @@ class StudentServiceTest {
         Assertions.assertThrows(ConflictException.class
                 , () -> studentService.save(student));
     }
+
     @Test
     void save() {
         when(studentRepository.findByNationalCode(8239429498L)).thenReturn(Optional.empty());
@@ -54,8 +54,9 @@ class StudentServiceTest {
                     return studentArgument;
                 });
 
-        Assertions.assertEquals(1L,studentService.save(student).getId());
+        Assertions.assertEquals(1L, studentService.save(student).getId());
     }
+
     @Test
     void findByIdWithThrowNotFoundException() {
         when(studentRepository.findById(8L)).thenReturn(Optional.empty());

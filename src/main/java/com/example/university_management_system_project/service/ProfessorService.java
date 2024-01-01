@@ -34,8 +34,8 @@ public class ProfessorService implements IProfessorService {
 
     @Override
     public Professor update(Professor professor) {
-        Professor professor1 = findById(professor.getId());
-        return professorRepository.save(professor1);
+        findById(professor.getId());
+        return professorRepository.save(professor);
     }
 
     public void deleteById(Long id) {

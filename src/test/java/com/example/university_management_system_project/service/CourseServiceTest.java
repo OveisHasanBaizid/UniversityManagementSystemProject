@@ -19,6 +19,9 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class CourseServiceTest {
 
+    static Course course;
+    static Student student;
+    static Professor professor;
     @Mock
     private CourseRepository courseRepository;
     @Mock
@@ -28,9 +31,20 @@ class CourseServiceTest {
     @InjectMocks
     private CourseService courseService;
 
-    static Course course;
-    static Student student;
-    static Professor professor;
+    @BeforeAll
+    public static void createObject() {
+        professor = new Professor();
+        professor.setId(1L);
+        professor.setCode(1);
+
+        course = new Course();
+        course.setId(1L);
+        course.setCode(1);
+
+        student = new Student();
+        student.setId(1L);
+        student.setStdNumber(1736716);
+    }
 
     @Test
     void addStudent() {
@@ -86,20 +100,5 @@ class CourseServiceTest {
         courseService.addProfessor(1, 1);
 
         Assertions.assertEquals(professor, courseRepository.findByCode(1).get().getProfessor());
-    }
-
-    @BeforeAll
-    public static void createObject() {
-        professor = new Professor();
-        professor.setId(1L);
-        professor.setCode(1);
-
-        course = new Course();
-        course.setId(1L);
-        course.setCode(1);
-
-        student = new Student();
-        student.setId(1L);
-        student.setStdNumber(1736716);
     }
 }
