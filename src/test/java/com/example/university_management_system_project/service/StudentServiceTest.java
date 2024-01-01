@@ -64,5 +64,4 @@ class StudentServiceTest {
                 , () -> studentService.findById(8L));
     }
 
-
 }
