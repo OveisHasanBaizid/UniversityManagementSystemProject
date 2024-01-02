@@ -22,6 +22,7 @@ class CourseServiceTest {
     static Course course;
     static Student student;
     static Professor professor;
+
     @Mock
     private CourseRepository courseRepository;
     @Mock

@@ -7,6 +7,7 @@ import com.example.university_management_system_project.dto_mapper.StudentMapper
 import com.example.university_management_system_project.entity.Course;
 import com.example.university_management_system_project.entity.Student;
 import com.example.university_management_system_project.service.IStudentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,18 +16,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/student/v1")
+@RequiredArgsConstructor
 public class StudentController {
 
     private final IStudentService studentService;
     private final StudentMapper studentMapper;
     private final CourseMapper courseMapper;
-
-    public StudentController(IStudentService studentService, StudentMapper studentMapper
-            , CourseMapper courseMapper) {
-        this.studentService = studentService;
-        this.studentMapper = studentMapper;
-        this.courseMapper = courseMapper;
-    }
 
     @PostMapping("/save")
     public ResponseEntity<HttpStatus> save(@RequestBody StudentDTO studentDTO) {

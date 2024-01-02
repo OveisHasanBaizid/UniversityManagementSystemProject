@@ -7,6 +7,9 @@ import com.example.university_management_system_project.exception.ConflictExcept
 import com.example.university_management_system_project.exception.NotFoundException;
 import com.example.university_management_system_project.repository.CourseRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,6 +39,10 @@ public class CourseService implements ICourseService {
     }
 
     @Override
+    @Caching(evict = {
+            @CacheEvict(value = "allCourse", allEntries = true),
+            @CacheEvict(value = "courses", key = "#id")
+    })
     public void deleteById(Long id) {
         //It checks if this code already exists or not
         findById(id);
@@ -43,6 +50,7 @@ public class CourseService implements ICourseService {
     }
 
     @Override
+    @Cacheable(value = "courses", key = "#id")
     public Course findById(Long id) {
         Optional<Course> optional = courseRepository.findById(id);
         if (optional.isEmpty())
@@ -51,6 +59,7 @@ public class CourseService implements ICourseService {
     }
 
     @Override
+    @Cacheable(value = "courses", key = "#result.id")
     public Course findByCode(int code) {
         Optional<Course> optionalCourse = courseRepository.findByCode(code);
         if (optionalCourse.isEmpty())
@@ -59,6 +68,7 @@ public class CourseService implements ICourseService {
     }
 
     @Override
+    @Cacheable(value = "allCourse")
     public List<Course> findAll() {
         return courseRepository.findAll();
     }

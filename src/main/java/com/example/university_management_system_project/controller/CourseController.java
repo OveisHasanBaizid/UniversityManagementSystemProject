@@ -5,6 +5,7 @@ import com.example.university_management_system_project.entity.Course;
 import com.example.university_management_system_project.entity.Professor;
 import com.example.university_management_system_project.entity.Student;
 import com.example.university_management_system_project.service.ICourseService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,20 +14,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/course/v1")
+@RequiredArgsConstructor
 public class CourseController {
 
     private final ICourseService courseService;
     private final CourseMapper courseMapper;
     private final StudentMapper studentMapper;
     private final ProfessorMapper professorMapper;
-
-    public CourseController(ICourseService courseService, CourseMapper courseMapper
-            , StudentMapper studentMapper, ProfessorMapper professorMapper) {
-        this.courseService = courseService;
-        this.courseMapper = courseMapper;
-        this.studentMapper = studentMapper;
-        this.professorMapper = professorMapper;
-    }
 
     @PostMapping("/save")
     public ResponseEntity<HttpStatus> save(@RequestBody CourseDTO courseDTO) {
