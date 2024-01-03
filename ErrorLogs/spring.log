@@ -58,3 +58,13 @@ Update your application's configuration. The following values are valid:
 2024-01-02T21:43:18.479+03:30 ERROR 2908 --- [restartedMain] ersityManagementSystemProjectApplication : Hi
 2024-01-02T21:43:23.715+03:30 ERROR 2908 --- [restartedMain] ersityManagementSystemProjectApplication : Hi
 2024-01-02T21:46:32.782+03:30 ERROR 26140 --- [restartedMain] ersityManagementSystemProjectApplication : Hi
+2024-01-02T22:30:17.396+03:30 ERROR 23628 --- [restartedMain] ersityManagementSystemProjectApplication : Hi
+2024-01-02T22:32:04.914+03:30 ERROR 23628 --- [restartedMain] ersityManagementSystemProjectApplication : Hi
+2024-01-02T22:32:34.738+03:30 ERROR 23628 --- [restartedMain] ersityManagementSystemProjectApplication : Hi
+2024-01-02T22:35:31.802+03:30 ERROR 23628 --- [restartedMain] ersityManagementSystemProjectApplication : Hi
+2024-01-02T22:36:06.081+03:30 ERROR 23628 --- [restartedMain] ersityManagementSystemProjectApplication : Hi
+2024-01-02T22:37:18.983+03:30 ERROR 23628 --- [restartedMain] ersityManagementSystemProjectApplication : Hi
+2024-01-02T22:39:51.217+03:30 ERROR 23628 --- [restartedMain] ersityManagementSystemProjectApplication : Hi
+2024-01-02T22:40:06.443+03:30 ERROR 21888 --- [restartedMain] ersityManagementSystemProjectApplication : Hi
+2024-01-02T22:41:24.135+03:30 ERROR 21888 --- [restartedMain] ersityManagementSystemProjectApplication : Hi
+2024-01-02T22:41:45.170+03:30 ERROR 17648 --- [restartedMain] ersityManagementSystemProjectApplication : Hi
