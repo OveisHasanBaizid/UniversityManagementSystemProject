@@ -4,9 +4,11 @@ import com.example.university_management_system_project.entity.Course;
 import com.example.university_management_system_project.entity.Professor;
 import com.example.university_management_system_project.entity.Student;
 import com.example.university_management_system_project.repository.CourseRepository;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.condition.EnabledForJreRange;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.JRE;
+import org.junit.jupiter.api.condition.OS;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -17,6 +19,9 @@ import java.util.Optional;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+//@EnabledOnOs({OS.WINDOWS})
+//@EnabledForJreRange(min = JRE.JAVA_8 , max = JRE.JAVA_21)
 class CourseServiceTest {
 
     static Course course;
@@ -48,6 +53,8 @@ class CourseServiceTest {
     }
 
     @Test
+    @DisplayName("Add new student to course")
+    @Order(1)
     void addStudent() {
         student.getCourses().add(course);
         course.getStudents().add(student);
@@ -62,6 +69,8 @@ class CourseServiceTest {
     }
 
     @Test
+    @DisplayName("Remove student of course")
+    @Order(2)
     void removeStudent() {
         student.getCourses().add(course);
         course.getStudents().add(student);
@@ -76,6 +85,8 @@ class CourseServiceTest {
     }
 
     @Test
+    @DisplayName("Add Professor to course")
+    @Order(3)
     void addProfessor() {
         professor.getCourses().add(course);
         course.setProfessor(professor);
@@ -90,6 +101,8 @@ class CourseServiceTest {
     }
 
     @Test
+    @DisplayName("Remove Professor of course")
+    @Order(4)
     void removeProfessor() {
         professor.getCourses().add(course);
         course.setProfessor(professor);
