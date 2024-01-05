@@ -1,7 +1,7 @@
-package com.example.university_management_system_project.dto_mapper;
+package com.example.university_management_system_project.dto;
 
-import com.example.university_management_system_project.common.AcademicRank;
-import com.example.university_management_system_project.common.Gender;
+import com.example.university_management_system_project.enums.AcademicRank;
+import com.example.university_management_system_project.enums.Gender;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.Data;

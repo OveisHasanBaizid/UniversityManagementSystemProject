@@ -1,5 +1,6 @@
-package com.example.university_management_system_project.dto_mapper;
+package com.example.university_management_system_project.mapper;
 
+import com.example.university_management_system_project.dto.ProfessorDTO;
 import com.example.university_management_system_project.entity.Professor;
 import org.mapstruct.Mapper;
 

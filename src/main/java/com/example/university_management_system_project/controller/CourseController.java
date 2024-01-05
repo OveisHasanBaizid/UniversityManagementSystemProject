@@ -1,9 +1,12 @@
 package com.example.university_management_system_project.controller;
 
-import com.example.university_management_system_project.dto_mapper.*;
+import com.example.university_management_system_project.dto.*;
 import com.example.university_management_system_project.entity.Course;
 import com.example.university_management_system_project.entity.Professor;
 import com.example.university_management_system_project.entity.Student;
+import com.example.university_management_system_project.mapper.CourseMapper;
+import com.example.university_management_system_project.mapper.ProfessorMapper;
+import com.example.university_management_system_project.mapper.StudentMapper;
 import com.example.university_management_system_project.service.ICourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

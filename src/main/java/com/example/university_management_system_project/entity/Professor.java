@@ -1,14 +1,12 @@
 package com.example.university_management_system_project.entity;
 
-import com.example.university_management_system_project.common.AcademicRank;
+import com.example.university_management_system_project.enums.AcademicRank;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Getter

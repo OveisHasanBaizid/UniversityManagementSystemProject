@@ -1,9 +1,9 @@
 package com.example.university_management_system_project.controller;
 
-import com.example.university_management_system_project.dto_mapper.CourseDTO;
-import com.example.university_management_system_project.dto_mapper.CourseMapper;
-import com.example.university_management_system_project.dto_mapper.StudentDTO;
-import com.example.university_management_system_project.dto_mapper.StudentMapper;
+import com.example.university_management_system_project.dto.CourseDTO;
+import com.example.university_management_system_project.mapper.CourseMapper;
+import com.example.university_management_system_project.dto.StudentDTO;
+import com.example.university_management_system_project.mapper.StudentMapper;
 import com.example.university_management_system_project.entity.Course;
 import com.example.university_management_system_project.entity.Student;
 import com.example.university_management_system_project.service.IStudentService;

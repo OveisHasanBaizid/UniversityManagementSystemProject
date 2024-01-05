@@ -1,6 +1,6 @@
 package com.example.university_management_system_project.entity;
 
-import com.example.university_management_system_project.common.Gender;
+import com.example.university_management_system_project.enums.Gender;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

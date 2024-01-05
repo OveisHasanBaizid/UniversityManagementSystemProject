@@ -1,4 +1,4 @@
-package com.example.university_management_system_project.dto_mapper;
+package com.example.university_management_system_project.dto;
 
 import lombok.*;
 
